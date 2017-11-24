@@ -1,0 +1,1 @@
+$HPLPath="/users/ttp/apak/bin/hpl"; SetDirectory[$HPLPath]; << ./HPL.m

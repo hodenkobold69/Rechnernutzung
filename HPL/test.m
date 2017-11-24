@@ -1,0 +1,5 @@
+
+$HPLPath = ".";
+<<HPL`;
+
+?HPL*
