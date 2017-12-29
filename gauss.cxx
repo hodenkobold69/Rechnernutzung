@@ -48,6 +48,7 @@ void gauss()	{
 	//Save everything to a pdf-file
 	c1->Print("gauss.pdf");
 
+	delete c1; delete ngauss1; delete ngauss2;
 }
 
 #ifndef __CINT__
