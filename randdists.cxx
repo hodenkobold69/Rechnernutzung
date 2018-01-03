@@ -54,22 +54,22 @@ Double_t t4(Double_t *x, Double_t *par)	{
 //Distribution function declarations (calculated using the Inversion Method) (Note: I don't give a shit.)
 Double_t t1_dist(Double_t *x, Double_t *par)	{
 
-	return 1. / 2. / TMath::Sqrt(x[0]) / bin_size;
+	return par[0] / 2. / TMath::Sqrt(x[0]);
 }
 
 Double_t t2_dist(Double_t *x, Double_t *par)	{
 
-	return 1. / x[0] / bin_size;
+	return par[0] / x[0];
 }
 
 Double_t t3_dist(Double_t *x, Double_t *par)	{
 
-	return 1. / 0.94689 * TMath::Power(TMath::Cos(TMath::ATan(x[0])), 2) / bin_size; //Arbitrary value found by calculating the integral.
+	return par[0] / (x[0] * x[0] + 1); //Arbitrary value found by calculating the integral.
 }
 
 Double_t t4_dist(Double_t *x, Double_t *par)	{
 
-	return TMath::Exp(x[0]) / bin_size;
+	return par[0] * TMath::Exp(x[0]);
 }
 
 //Main program
@@ -107,10 +107,14 @@ void randdists()	{
 	TF1 *f4_traf = new TF1("f4_traf", t4, 0., 1., 0);
 
 	//Distribution functions
-	TF1 *f1_dist = new TF1("f1_dist", t1_dist, f1_traf->GetMinimum(), f1_traf->GetMaximum(), 0);
-	TF1 *f2_dist = new TF1("f2_dist", t2_dist, f2_traf->GetMinimum(), f2_traf->GetMaximum(), 0);
-	TF1 *f3_dist = new TF1("f3_dist", t3_dist, f3_traf->GetMinimum(), f3_traf->GetMaximum(), 0);
-	TF1 *f4_dist = new TF1("f4_dist", t4_dist, f4_traf->GetMinimum(), f4_traf->GetMaximum(), 0);
+	TF1 *f1_dist = new TF1("f1_dist", t1_dist, f1_traf->GetMinimum(), f1_traf->GetMaximum(), 1);
+	f1_dist->SetParameter(0, 1. / bin_size);
+	TF1 *f2_dist = new TF1("f2_dist", t2_dist, f2_traf->GetMinimum(), f2_traf->GetMaximum(), 1);
+	f2_dist->SetParameter(0, 1. / bin_size * (TMath::E() - 1));
+	TF1 *f3_dist = new TF1("f3_dist", t3_dist, f3_traf->GetMinimum(), f3_traf->GetMaximum(), 1);
+	f3_dist->SetParameter(0, 1. / bin_size * (TMath::Pi() / 4) / 0.665);
+	TF1 *f4_dist = new TF1("f4_dist", t4_dist, f4_traf->GetMinimum(), f4_traf->GetMaximum(), 1);
+	f4_dist->SetParameter(0, 1. / bin_size * TMath::Log(2.));
 
 	//Draw normalized distribution functions
 	c1->cd(1); f1_dist->Draw("same");
