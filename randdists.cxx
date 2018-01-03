@@ -80,10 +80,10 @@ void randdists()	{
 	c1->Divide(2,2);
 
 	//Set up histograms
-	TH1F *h1 = new TH1F("h1", "t1", bin_size, 0, 1);
-	TH1F *h2 = new TH1F("h2", "t2", bin_size, 1, TMath::E());
-	TH1F *h3 = new TH1F("h3", "t3", bin_size, 0, TMath::Pi()/4.);
-	TH1F *h4 = new TH1F("h4", "t4", bin_size, 0, 0.69);
+	TH1F *h1 = new TH1F("h1", "t_{1}(x)=x^{2}", bin_size, 0, 1);
+	TH1F *h2 = new TH1F("h2", "t_{2}(x)=e^{x}", bin_size, 1, TMath::E());
+	TH1F *h3 = new TH1F("h3", "t_{3}(x)=tan(x)", bin_size, 0, TMath::Pi()/4.);
+	TH1F *h4 = new TH1F("h4", "t_{4}(x)=log(1+x)", bin_size, 0, 0.69);
 
 	//Fill histograms
 	for (int i = 0; i < N; i++)	{
