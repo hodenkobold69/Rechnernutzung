@@ -115,5 +115,6 @@ elif sys.argv[1] == 'c':
 	rands, ntrials = acc_rej(poly, N, 0, max(bins))
 	plt.hist(rands, histtype='step', label='generated randoms', normed=1)
 	#plt.plot(X, poly(X))
+
 	plt.legend()
 	plt.savefig('elefant.pdf')
