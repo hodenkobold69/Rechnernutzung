@@ -38,6 +38,4 @@ stop = time.default_timer()		#time-critical point end
 
 ratio = (N - counter) / N
 
-#plot some things
-
 print('\nFinished job. Time required: %.2fs\nd_obs = %.2f\nnumber of times, d_obs > d_sampled = %i\nratio (N - counts) / N: %.2f\n' %((stop-start), d_obs, counter, ratio))
